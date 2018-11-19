@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import sample from './start-of-a-new-day.mp3'
+// import sample from './start-of-a-new-day.mp3'
 import './App.css';
 
 // const sample = './start-of-a-new-day.mp3'
@@ -30,26 +30,58 @@ class Drumpad extends Component {
 
 class DrumMachine extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      drumpads : drumpadData
-    }
+      drumpads: drumpadData
+    };
 
-    this.handleClick = this.handleClick.bind(this)
+    // this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick = (e) => {
-    // console.log(e.target.childNodes[0].src);
-    e.target.childNodes[0].play();
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyDown, false);
   }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyDown, false);
+  }
+
+  // Play the drum sample
+  playDrum = elem => {
+    let drumSample = elem.childNodes[0];
+    drumSample.pause();
+    drumSample.currentTime = 0;
+    drumSample.play();
+  };
+
+  handleClick = e => {
+    // // console.log("Event type : ", e.type);
+    // console.log("Event : ", e.target);
+    // // console.log(e.type);
+    this.playDrum(e.target);
+  };
+  
+  handleKeyDown = (e) => {
+    // console.log("Event : ", e.key.toUpperCase());
+    let filtered = this.state.drumpads.filter(drumpad => drumpad.id === e.key.toUpperCase());
+    if(filtered.length !== 0){
+      this.playDrum(document.getElementById(filtered[0].id));
+    }    
+  };
 
   render() {
     return (
       <div className="drum-machine" id="drum-machine">
-        <div id="display"></div>
+        <div id="display" />
         <div className="drum-pads">
-          {this.state.drumpads.map((drumpad, i) => <Drumpad id={drumpad.id} key={`${drumpad.id}${i}`} song={drumpad.song} onClick={this.handleClick} />)}
+          {this.state.drumpads.map((drumpad, i) => (
+            <Drumpad
+              id={drumpad.id}
+              key={`${drumpad.id}${i}`}
+              song={drumpad.song}
+              onClick={this.handleClick}
+            />
+          ))}
         </div>
       </div>
     );
