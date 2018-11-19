@@ -5,15 +5,15 @@ import './App.css';
 // const sample = './start-of-a-new-day.mp3'
 
 let drumpadData = [
-  {id: "Q", song: sample},
-  {id: "W", song: sample},
-  {id: "E", song: sample},
-  {id: "A", song: sample},
-  {id: "S", song: sample},
-  {id: "D", song: sample},
-  {id: "Z", song: sample},
-  {id: "X", song: sample},
-  {id: "C", song: sample},
+  {id: "Q", song: "http://files.sampulator.com/sounds/claps/normal3.mp3"},
+  {id: "W", song: "http://files.sampulator.com/sounds/snare/snare-huge-reverb.mp3"},
+  {id: "E", song: "http://files.sampulator.com/sounds/kicks/punchy-trap.mp3"},
+  {id: "A", song: "http://files.sampulator.com/sounds/snare/snare-rim-real.mp3"},
+  {id: "S", song: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"},
+  {id: "D", song: "http://files.sampulator.com/sounds/808/8084.mp3"},
+  {id: "Z", song: "http://files.sampulator.com/sounds/perc/triangle.mp3"},
+  {id: "X", song: "http://files.sampulator.com/sounds/perc/tom.mp3"},
+  {id: "C", song: "http://files.sampulator.com/sounds/cymbals/crash2.mp3"},
 ]
 
 
